@@ -13,7 +13,6 @@ test.csv -> ["device_id","date","value_type","value"(unknown)] ==>> "value"
 S1 devices in the same building should have similar values
 """
 
-import keras
 import pandas as pd
 
 column_names = ["device_id", "date", "value_type_id"]
@@ -58,16 +57,3 @@ def predict (predict_data_path, model):
     predicted_test_data = pd.DataFrame(test_data)  # 将 NumPy 数组转换为 DataFrame
     predicted_test_data.to_csv('predicted_test_data.csv', index=False)
 
-# model1 失败案例
-model1 = keras.Sequential([
-    keras.layers.Dense(32, activation='relu', input_shape=(3,)),
-    keras.layers.Dense(64, activation='relu'),
-    keras.layers.Dense(1, activation='sigmoid')
-])
-# model2 成功案例 最后可能over-fit
-model2 = keras.Sequential([
-    keras.layers.Dense(1, input_shape=(3,), activation='linear')
-])
-
-model = test(r"../Example/train_data.csv", r"Example/Example.csv", r"Example/predict_data.csv", 32, 10, model2)
-predict("../Example/predict_data.csv", model)
