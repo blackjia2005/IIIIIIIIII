@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 # 读取 CSV 文件
 data = pd.read_csv('../Project/data/sampled_readings.csv')
 reading_types = pd.read_csv('../Project/data/reading_types.csv')
-devices = pd.read_csv('devices.csv')
+devices = pd.read_csv('../Project/data/devices.csv')
 
 # 合并数据，以便获取 reading_type_name 和 building_id
 data_merged = pd.merge(data, reading_types, left_on='value_type_id', right_on='reading_type_id')
